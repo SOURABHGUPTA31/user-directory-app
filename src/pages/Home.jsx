@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function Home(){
     const [search,setSearch] = useState("");
-    const {users,loading,darkMode,setDarkMode}=useContext(UserContext);
+    const {users,loading,darkMode,setDarkMode,setIsAuth}=useContext(UserContext);
     const navigate=useNavigate();
 
   if(!loading && users.length === 0){
@@ -25,6 +25,8 @@ function Home(){
           minHeight:"100vh"
          }}>
             <h1>users</h1>
+            
+            <button onClick={() => {setIsAuth(false)}}>Logout</button>
 
             <button onClick={() => setDarkMode(!darkMode)}>toggle theme</button>
 

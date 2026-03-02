@@ -14,11 +14,16 @@ export const UserProvider = ({children}) => {
         return saved === "true";
     });
 
+    const [isAuth,setIsAuth]=useState(false);
+
     const fetchUser = () => {
         axios.get("https://jsonplaceholder.typicode.com/users")
         .then(res => {setUsers(res.data);
           setLoading(false);})
-        .catch(err => console.log(err)
+        .catch(err => {
+            console.log(err)
+            setLoading(false);
+        }
         )
     }
 
@@ -32,10 +37,10 @@ export const UserProvider = ({children}) => {
     },[])
      
     return (
-        <UserContext.Provider value={{users,setUsers,loading,darkMode,setDarkMode}}>
+        <UserContext.Provider value={{users,setUsers,loading,darkMode,setDarkMode,isAuth,setIsAuth                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         }}>
             {children}
         </UserContext.Provider>
     )
 }
 
-export default UserContext;
+export default UserContext;                                                                                                                          
