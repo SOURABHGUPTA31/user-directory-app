@@ -14,7 +14,15 @@ export const UserProvider = ({children}) => {
         return saved === "true";
     });
 
-    const [isAuth,setIsAuth]=useState(false);
+    const [isAuth,setIsAuth]=useState(() => {
+        const saved = localStorage.getItem("login");
+        return saved === "true";
+    });
+
+
+    useEffect(() => {
+        localStorage.setItem("login",isAuth);
+    },[isAuth])
 
     const fetchUser = () => {
         axios.get("https://jsonplaceholder.typicode.com/users")
